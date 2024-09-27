@@ -1,6 +1,6 @@
 {
     "name": "innoboxrr/google-calendar",
-    "description": "Paquete para la administración del calendario de Google desde tu aplicación de Laravel",
+    "description": "Paquete para la administraci\u00f3n del calendario de Google desde tu aplicaci\u00f3n de Laravel",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -16,5 +16,15 @@
     "require-dev": {
         "orchestra/testbench": "^9",
         "innoboxrr/larapack-generator": "^5.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Innoboxrr\\GoogleCalendar\\Providers\\AppServiceProvider",
+                "Innoboxrr\\GoogleCalendar\\Providers\\AuthServiceProvider",
+                "Innoboxrr\\GoogleCalendar\\Providers\\EventServiceProvider",
+                "Innoboxrr\\GoogleCalendar\\Providers\\RouteServiceProvider"
+            ]
+        }
     }
 }
