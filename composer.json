@@ -1,0 +1,17 @@
+{
+    "name": "innoboxrr/google-calendar",
+    "description": "Paquete para la administración del calendario de Google desde tu aplicación de Laravel",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Innoboxrr\\GoogleCalendar\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Homero Raul",
+            "email": "h.raulvc@gmail.com"
+        }
+    ],
+    "require": {}
+}
