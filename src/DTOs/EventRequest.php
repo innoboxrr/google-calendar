@@ -2,7 +2,7 @@
 
 namespace Innoboxrr\GoogleCalendar\DTOs;
 
-class Event
+class EventRequest
 {
     public ?string $id;
     public string $summary;
