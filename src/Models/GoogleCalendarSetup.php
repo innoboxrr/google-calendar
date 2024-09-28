@@ -28,6 +28,20 @@ class GoogleCalendarSetup extends Model
         return \Innoboxrr\GoogleCalendar\Database\Factories\GoogleCalendarSetupFactory::new();
     }
 
+    public static function callback($code)
+    {
+        $response = GoogleAuth::authCallback($code);
+        if(isset($response['access_token'])) {
+            Auth::user()->setup()->updateOrCreate([], [
+                'access_token' => $response['access_token'],
+                'refresh_token' => $response['refresh_token'],
+                'expires_at' => now()->addSeconds($response['expires_in']),
+            ]);
+            return redirect()->to(config('google-calendar.callback_success_url'));
+        }
+        return redirect()->to(config('google-calendar.callback_failure_url'));
+    }
+
     public static function getAuthToken()
     {
         $setup = self::where('user_id', Auth::id())->first();
