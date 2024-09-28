@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Innoboxrr\GoogleCalendar\DTOs\Event;
 use Innoboxrr\GoogleCalendar\DTOs\EventResponse;
 
-class EventService extends TokenService implements EventInterface
+class CalendarService extends TokenService implements EventInterface
 {
 
     public function getEvents(): array

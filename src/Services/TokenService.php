@@ -2,6 +2,8 @@
 
 namespace Innoboxrr\GoogleCalendar\Services;
 
+use  Innoboxrr\GoogleCalendar\Models\GoogleCalendarSetup;
+
 abstract class TokenService
 {
     protected ?string $accessToken;
@@ -13,8 +15,6 @@ abstract class TokenService
 
     protected function getAccessToken(): ?string
     {
-    
-        return 'Happy';
-
+        return GoogleCalendarSetup::getAuthToken();
     }
 }
