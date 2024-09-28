@@ -3,12 +3,12 @@
 namespace Innoboxrr\GoogleCalendar\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Innoboxrr\GoogleCalendar\Services\GoogleCalendarService;
+use Innoboxrr\GoogleCalendar\Services\EventService;
 
-class GoogleCalendar extends Facade
+class GoogleCalendarEvent extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return GoogleCalendarService::class;
+        return EventService::class;
     }
 }
