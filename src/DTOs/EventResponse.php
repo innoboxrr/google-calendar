@@ -17,16 +17,19 @@ class EventResponse
 
     public function __construct($data)
     {
+        // Google omite summary, description y location cuando estan vacios, y
+        // un evento de dia completo trae `date` en vez de `dateTime`: antes
+        // cualquiera de los dos casos tronaba con una clave indefinida.
         $this->id = $data['id'] ?? null;
-        $this->summary = $data['summary'];
-        $this->description = $data['description'];
-        $this->start = $data['start']['dateTime'];
-        $this->end = $data['end']['dateTime'];
-        $this->location = $data['location'];
-        $this->status = $data['status'];
-        $this->htmlLink = $data['htmlLink'];
-        $this->created = $data['created'];
-        $this->updated = $data['updated'];
+        $this->summary = $data['summary'] ?? '';
+        $this->description = $data['description'] ?? '';
+        $this->start = $data['start']['dateTime'] ?? $data['start']['date'];
+        $this->end = $data['end']['dateTime'] ?? $data['end']['date'];
+        $this->location = $data['location'] ?? '';
+        $this->status = $data['status'] ?? '';
+        $this->htmlLink = $data['htmlLink'] ?? '';
+        $this->created = $data['created'] ?? '';
+        $this->updated = $data['updated'] ?? '';
     }
 
     public static function fromArray($data): self

@@ -14,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/google-calendar.php', 'google-calendar');
 
-        $this->app->singleton(CalendarService::class, function (): CalendarService {
+        // bind y no singleton: la instancia lleva el token del usuario
+        // autenticado al construirse, y como singleton se compartia entre
+        // usuarios en un worker de colas o en Octane.
+        $this->app->bind(CalendarService::class, function (): CalendarService {
             return new CalendarService();
         });
 
@@ -29,7 +32,9 @@ class AppServiceProvider extends ServiceProvider
         // $this->loadViewsFrom(__DIR__.'/../../resources/views', 'innoboxrrgooglecalendar');
         if ($this->app->runningInConsole()) {
             // $this->publishes([__DIR__.'/../../resources/views' => resource_path('views/vendor/innoboxrrgooglecalendar'),], 'views');
-            $this->publishes([__DIR__.'/../../config/google-calendar.php' => config_path('google-calendar.php')], 'config');
+            // `google-calendar-config` es la etiqueta que documenta el README;
+            // `config` se conserva por la convencion del ecosistema.
+            $this->publishes([__DIR__.'/../../config/google-calendar.php' => config_path('google-calendar.php')], ['google-calendar-config', 'config']);
         }
     }
 }
